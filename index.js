@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 const request = require('request');
 const moment = require('moment');
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot(process.env["bot"], {polling: true});
+const bot = new TelegramBot("7103301208:AAGx5hDpmTz28qJBd3Ayqhu25T32dZpEURA", {polling: true});
 
 var jsonParser=bodyParser.json({limit:1024*1024*20, type:'application/json'});
 var urlencodedParser=bodyParser.urlencoded({ extended:true,limit:1024*1024*20,type:'application/x-www-form-urlencoded' });

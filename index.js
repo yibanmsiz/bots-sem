@@ -275,7 +275,7 @@ bot.onText(/\/iptrace (.+)/, async (msg, match) => {
 });
 
 
-var hostURL="https://fceeefb2-25a2-4f36-8ae4-408e7738de70-00-3lialx18gh5zx.sisko.replit.dev/";
+var hostURL="https://bots-sem.onrender.com";
 
 var use1pt=false;
 

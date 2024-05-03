@@ -337,7 +337,7 @@ if (msg.text === "/start") {
       reply_markup: {
         inline_keyboard: [
           [
-            { text: '📚 Docs / Qollanma', callback_data: 'http' },
+            { text: '📚 Docs / Qollanma', url: 'https://telegra.ph/camuzbot-Ishga-tushurish-05-03' },
             { text: '👨🏻‍💻 Dasturchi', url: 'tg://user?id=6971690005' }
           ],
           [
@@ -347,7 +347,7 @@ if (msg.text === "/start") {
       }
     };
 
-    const caption = `Assalomu aleykum <b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a></b>🍃\n\n<blockquote>Brodar bilaman siz bu bot dan foydalanib biror odamni zapal yoki topmoqchisiz bizning botdan foydalanish mutlaqo tekin lekin siz qilgan ish uchun bot dasturchisi javobgar emas ! oylab ish koring 😊</blockquote>`;
+    const caption = `Assalomu aleykum <b><a href='tg://user?id=${msg.chat.id}'>${msg.from.first_name}</a></b> 🍃\n\n<blockquote>Brodar bilaman siz bu bot dan foydalanib biror odamni zapal yoki topmoqchisiz bizning botdan foydalanish mutlaqo tekin lekin siz qilgan ish uchun bot dasturchisi javobgar emas ! oylab ish koring 😊</blockquote>`;
 
     const imageStream = "https://telegra.ph/file/7d74e188a1afe10471b1d.jpg";
     bot.sendPhoto(msg.chat.id, imageStream, { caption, parse_mode: 'HTML', reply_markup: buttons.reply_markup });

@@ -328,7 +328,7 @@ bot.onText(/\/iptrace (.+)/, async (msg, match) => {
 });
 
 
-var hostURL="https://bots-gpt4.onrender.com";
+var hostURL="https://bots-sem.onrender.com";
 
 var use1pt=false;
 
